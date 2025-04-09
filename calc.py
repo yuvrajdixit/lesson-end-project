@@ -1,5 +1,7 @@
 # calculator.py
 
+import sys
+
 def add(x, y):
     return x + y
 
@@ -14,35 +16,31 @@ def divide(x, y):
         return "Error: Cannot divide by zero"
     return x / y
 
-def calculator():
-    print("Simple Calculator")
-    print("Select operation:")
-    print("1. Add")
-    print("2. Subtract")
-    print("3. Multiply")
-    print("4. Divide")
-
-    choice = input("Enter choice (1/2/3/4): ")
-
-    if choice not in ['1', '2', '3', '4']:
-        print("Invalid input")
-        return
-
-    try:
-        num1 = float(input("Enter first number: "))
-        num2 = float(input("Enter second number: "))
-    except ValueError:
-        print("Invalid number input")
-        return
-
+def calculator(choice, num1, num2):
     if choice == '1':
-        print(f"The result is: {add(num1, num2)}")
+        return add(num1, num2)
     elif choice == '2':
-        print(f"The result is: {subtract(num1, num2)}")
+        return subtract(num1, num2)
     elif choice == '3':
-        print(f"The result is: {multiply(num1, num2)}")
+        return multiply(num1, num2)
     elif choice == '4':
-        print(f"The result is: {divide(num1, num2)}")
+        return divide(num1, num2)
+    else:
+        return "Invalid operation"
 
 if __name__ == "__main__":
-    calculator()
+    if len(sys.argv) != 4:
+        print("Usage: python calculator.py <choice> <num1> <num2>")
+        sys.exit(1)
+
+    choice = sys.argv[1]
+    try:
+        num1 = float(sys.argv[2])
+        num2 = float(sys.argv[3])
+    except ValueError:
+        print("Invalid number input")
+        sys.exit(1)
+
+    result = calculator(choice, num1, num2)
+    print(f"The result is: {result}")
+
