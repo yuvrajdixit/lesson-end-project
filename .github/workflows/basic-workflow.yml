@@ -20,6 +20,6 @@ jobs:
           python-version: '3.11'
 
       - name: Run calculator
-        run: python calculator.py < /dev/null
+        run: python calc.py < /dev/null
 
 
