@@ -1,11 +1,25 @@
-name: GitHub Actions Demo
-run-name: Testing out GitHub Actions
+name: Run Python Calculator
 
-on: [push]
+on:
+  push:
+    paths:
+      - '**.py'
+      - '.github/workflows/**'
 
 jobs:
-  Basic-Workflow:
+  run-calculator:
     runs-on: ubuntu-latest
+
     steps:
-      - run: echo "Job is executing as part of Basic workflow"
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Run calculator
+        run: python calculator.py < /dev/null
+
 
