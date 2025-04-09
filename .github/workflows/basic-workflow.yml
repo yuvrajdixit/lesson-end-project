@@ -20,7 +20,7 @@ jobs:
           python-version: '3.11'
 
       - name: Run calculator
-        run: python calculator.py 1 5 3
+        run: python calc.py 1 5 3
         # 1 => Add, 5 and 3 are inputs
 
 
